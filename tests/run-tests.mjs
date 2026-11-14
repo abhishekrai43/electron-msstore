@@ -124,7 +124,12 @@ expectCodes("old builder + & in description",
   run(fixture("desc", { pkg: { description: "Clean CSV & Excel" }, yml: base("MyApp - Cleaner"), builder: "26.10.0" })),
   { has: ["description-unescaped"], exit: 1 })
 
-// 12. Clean project.
+// 12. v27 msix target is reported, not silently treated as appx.
+expectCodes("msix target warns",
+  run(fixture("msix", { yml: base("MyApp - Cleaner").replace("- target: appx", "- target: msix"), builder: "26.18.1" })),
+  { has: ["msix-target"], not: ["no-appx-target"] })
+
+// 13. Clean project.
 expectCodes("clean project passes",
   run(fixture("clean", { yml: base("MyApp - Data Cleaner"), builder: "26.18.1" }),
     ["--expect-identity", "AcmeInc.myapp", "--expect-publisher", GUID, "--expect-publisher-display-name", "Acme", "--expect-display-name", "MyApp - Data Cleaner"]),

@@ -110,8 +110,12 @@ if (!builderVersion) {
 // ---------- is appx even a target? ----------
 const targets = []
 for (const t of [].concat(config.win?.target || [])) targets.push(typeof t === "string" ? t : t?.target)
-const hasAppx = targets.some(t => t === "appx" || t === "msix")
-if (!hasAppx) add(INFO, "no-appx-target", `win.target does not include "appx" (found: ${targets.join(", ") || "default nsis"}). Checks still run.`,
+const hasAppx = targets.includes("appx")
+const hasMsix = targets.includes("msix") || config.msix != null
+if (hasMsix) add(WARN, "msix-target",
+  'This project uses electron-builder\'s newer "msix" target (v27, beta) and/or an "msix" config block. This checker validates the "appx" block; identity, name and asset results may not reflect your msix settings.',
+  "Inspect the built AppxManifest.xml directly before upload (SKILL.md step 5).")
+else if (!hasAppx) add(INFO, "no-appx-target", `win.target does not include "appx" (found: ${targets.join(", ") || "default nsis"}). Checks still run.`,
   'Add `- target: appx` under win.target, or build with `--win appx`.')
 if (appx.customManifestPath) add(WARN, "custom-manifest",
   `appx.customManifestPath is set (${appx.customManifestPath}); identity/name checks below describe the config, not your custom manifest.`,

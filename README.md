@@ -71,6 +71,12 @@ electron-builder 26.18.1 escapes this field itself, so the manifest gets
         fix: Write the plain character instead, e.g. "MyApp - CSV & Excel Cleaner".
 ```
 
+## Scope
+
+Covers electron-builder's `appx` target (v24–v26). electron-builder v27 adds a separate
+`msix` target (beta) with its own `msix` config block; the checker warns when it sees it
+but does not validate it yet. Inspect the built `AppxManifest.xml` in that case.
+
 ## Pairs well with
 
 - [`microsoft-store-publisher`](https://github.com/github/awesome-copilot) (GitHub's
@@ -83,7 +89,7 @@ electron-builder 26.18.1 escapes this field itself, so the manifest gets
 cd tests && npm install && node run-tests.mjs
 ```
 
-12 fixture projects cover each trap, including both sides of the 26.16.0 escaping change.
+13 fixture projects cover each trap, including both sides of the 26.16.0 escaping change.
 
 ## Layout
 
