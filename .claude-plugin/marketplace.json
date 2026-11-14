@@ -1,0 +1,19 @@
+{
+  "name": "electron-msstore",
+  "owner": {
+    "name": "Abhishek Rai"
+  },
+  "metadata": {
+    "description": "Ship Electron apps to the Microsoft Store with electron-builder",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "electron-msstore",
+      "description": "electron-builder appx/MSIX config, Partner Center identity matching, tile assets, Store-build runtime behaviour, and a checker for the traps electron-builder lets through.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/electron-msstore"]
+    }
+  ]
+}

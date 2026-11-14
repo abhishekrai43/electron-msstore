@@ -1,0 +1,6 @@
+{
+  "name": "electron-msstore-tests",
+  "private": true,
+  "type": "module",
+  "devDependencies": { "js-yaml": "^4.1.0" }
+}
